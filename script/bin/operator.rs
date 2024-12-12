@@ -12,7 +12,7 @@ use alloy::{
 };
 use alloy_primitives::{B256, U256};
 use anyhow::Result;
-use helios_consensus_core::consensus_spec::MainnetConsensusSpec;
+use helios_consensus_core::consensus_spec::GnosisConsensusSpec;
 use helios_ethereum::consensus::Inner;
 use helios_ethereum::rpc::http_rpc::HttpRpc;
 use helios_ethereum::rpc::ConsensusRpc;
@@ -126,7 +126,7 @@ impl SP1LightClientOperator {
     /// Fetch values and generate an 'update' proof for the SP1 LightClient contract.
     async fn request_update(
         &self,
-        mut client: Inner<MainnetConsensusSpec, HttpRpc>,
+        mut client: Inner<GnosisConsensusSpec, HttpRpc>,
     ) -> Result<Option<SP1ProofWithPublicValues>> {
         // Fetch required values.
         let contract = SP1LightClient::new(self.contract_address, self.wallet_filler.clone());

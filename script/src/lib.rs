@@ -1,7 +1,7 @@
 use alloy_primitives::B256;
 use helios_consensus_core::{
     calc_sync_period,
-    consensus_spec::MainnetConsensusSpec,
+    consensus_spec::GnosisConsensusSpec,
     types::{BeaconBlock, Update},
 };
 use helios_ethereum::rpc::ConsensusRpc;
@@ -21,10 +21,10 @@ pub const MAX_REQUEST_LIGHT_CLIENT_UPDATES: u8 = 128;
 
 /// Fetch updates for client
 pub async fn get_updates(
-    client: &Inner<MainnetConsensusSpec, HttpRpc>,
-) -> Vec<Update<MainnetConsensusSpec>> {
+    client: &Inner<GnosisConsensusSpec, HttpRpc>,
+) -> Vec<Update<GnosisConsensusSpec>> {
     let period =
-        calc_sync_period::<MainnetConsensusSpec>(client.store.finalized_header.beacon().slot);
+        calc_sync_period::<GnosisConsensusSpec>(client.store.finalized_header.beacon().slot);
 
     let updates = client
         .rpc
@@ -67,7 +67,7 @@ pub async fn get_checkpoint(slot: u64) -> B256 {
     let (block_send, _) = channel(256);
     let (finalized_block_send, _) = watch::channel(None);
     let (channel_send, _) = watch::channel(None);
-    let client = Inner::<MainnetConsensusSpec, HttpRpc>::new(
+    let client = Inner::<GnosisConsensusSpec, HttpRpc>::new(
         &consensus_rpc,
         block_send,
         finalized_block_send,
@@ -75,13 +75,13 @@ pub async fn get_checkpoint(slot: u64) -> B256 {
         Arc::new(config),
     );
 
-    let block: BeaconBlock<MainnetConsensusSpec> = client.rpc.get_block(slot).await.unwrap();
+    let block: BeaconBlock<GnosisConsensusSpec> = client.rpc.get_block(slot).await.unwrap();
 
     B256::from_slice(block.tree_hash_root().as_ref())
 }
 
 /// Setup a client from a checkpoint.
-pub async fn get_client(checkpoint: B256) -> Inner<MainnetConsensusSpec, HttpRpc> {
+pub async fn get_client(checkpoint: B256) -> Inner<GnosisConsensusSpec, HttpRpc> {
     let consensus_rpc = std::env::var("SOURCE_CONSENSUS_RPC_URL").unwrap();
     let chain_id = std::env::var("SOURCE_CHAIN_ID").unwrap();
     let network = Network::from_chain_id(chain_id.parse().unwrap()).unwrap();
