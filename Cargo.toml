@@ -16,9 +16,9 @@ sp1-helios-program = { path = "program" }
 sp1-helios-primitives = { path = "primitives" }
 
 # helios
-helios = { git = "https://github.com/a16z/helios", version = "0.7.0" }
-helios-consensus-core = { git = "https://github.com/a16z/helios", version = "0.7.0" }
-helios-ethereum = { git = "https://github.com/a16z/helios", version = "0.7.0" }
+helios = { git = "https://github.com/crosschain-alliance/helios", branch = "feat/lukso" }
+helios-consensus-core = { git = "https://github.com/crosschain-alliance/helios", branch = "feat/lukso" }
+helios-ethereum = { git = "https://github.com/crosschain-alliance/helios", branch = "feat/lukso"}
 
 # general
 dotenv = "0.15.0"
