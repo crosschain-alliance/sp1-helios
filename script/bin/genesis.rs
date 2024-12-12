@@ -90,9 +90,9 @@ pub async fn main() -> Result<()> {
         .tree_hash_root();
     let genesis_time = helios_client.config.chain.genesis_time;
     let genesis_root = helios_client.config.chain.genesis_root;
-    const SECONDS_PER_SLOT: u64 = 12;
-    const SLOTS_PER_EPOCH: u64 = 32;
-    const SLOTS_PER_PERIOD: u64 = SLOTS_PER_EPOCH * 256;
+    const SECONDS_PER_SLOT: u64 = 5;
+    const SLOTS_PER_EPOCH: u64 = 16;
+    const SLOTS_PER_PERIOD: u64 = SLOTS_PER_EPOCH * 512;
     let source_chain_id: u64 = match env::var("SOURCE_CHAIN_ID") {
         Ok(val) => val.parse().unwrap(),
         Err(_) => {
