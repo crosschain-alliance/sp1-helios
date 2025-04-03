@@ -1,0 +1,9 @@
+{
+    "$schema": "https://sindri.app/api/v1/sindri-manifest-schema.json",
+    "name": "sp1-helios",
+    "circuitType": "sp1",
+    "provingScheme": "groth16",
+    "elfPath": "elf/sp1-helios-elf",
+    "sp1Version": "4.0.0"
+}
+  

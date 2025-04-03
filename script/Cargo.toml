@@ -14,6 +14,11 @@ name = "operator"
 path = "./bin/operator.rs"
 
 [[bin]]
+name = "sindrioperator"
+path = "./bin/sindrioperator.rs"
+
+
+[[bin]]
 name = "test"
 path = "./bin/test.rs"
 
@@ -40,6 +45,11 @@ cargo_metadata = { workspace = true }
 reqwest = { workspace = true }
 tree_hash = { workspace = true }
 serde_json = { workspace = true }
+sindri = { workspace = true }
+tracing-subscriber = "0.3.19"
+reqwest-middleware = "=0.4.1" # Force exact version
+reqwest-retry = "0.7.0" # Use compatible version
+
 
 [build-dependencies]
 sp1-build = { workspace = true }
